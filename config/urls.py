@@ -24,5 +24,5 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", calendar_views.home, name="home")
+    path("", calendar_views.month_view, name="month"),
 ]

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AutoScheduler - {{ month_name }} {{ year }}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'calendarapp/calendar.css' %}" />
+  </head>
+
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="nav">
+          <a class="nav-btn" href="/?year={{ prev_year }}&month={{ prev_month }}">← Prev</a>
+          <h1 class="title">{{ month_name }} {{ year }}</h1>
+          <a class="nav-btn" href="/?year={{ next_year }}&month={{ next_month }}">Next →</a>
+        </div>
+
+        <div class="sub">
+          <span class="hint">Clicking days will become overrides in the next milestone.</span>
+          <span class="today">Today: {{ today }}</span>
+        </div>
+      </header>
+
+      <section class="calendar">
+        <div class="dow">Sun</div>
+        <div class="dow">Mon</div>
+        <div class="dow">Tue</div>
+        <div class="dow">Wed</div>
+        <div class="dow">Thu</div>
+        <div class="dow">Fri</div>
+        <div class="dow">Sat</div>
+
+        {% for week in weeks %}
+          {% for cell in week %}
+            {% if cell.day == 0 %}
+              <div class="cell cell--pad"></div>
+            {% else %}
+              <div class="cell">
+                <div class="cell-top">
+                  <span class="daynum">{{ cell.day }}</span>
+                </div>
+                <div class="cell-body">
+                  <span class="open">Open</span>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </section>
+    </div>
+  </body>
+</html>
+
